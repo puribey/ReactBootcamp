@@ -29,6 +29,6 @@ This sets the new state of the application.
 Just JS:
 Nothing else needed. 
 
-Go to branch One To see my notes on day one 
+Go to branch dayOne to see the rest of my notes...
 
-createElement =  actual representation of a DOM node
+
