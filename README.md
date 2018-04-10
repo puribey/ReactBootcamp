@@ -9,7 +9,7 @@ React creates and object representation of the DOM (known as virtual DOM) in ord
 
 Whats the difference between the react element and the react component?
 
-Component = is a fuction or class that optionally accepts imput (props) and returns a react element. We create components that return elements. 
+**Component** = is a fuction or class that optionally accepts imput (props) and returns a react element. We create components that return elements. 
 
 ```
 
@@ -43,7 +43,7 @@ Component = is a fuction or class that optionally accepts imput (props) and retu
 
 ```
 
-Working with JSX 
+### Working with JSX 
 To be able to use JSX we need babel.
 
 Here we see the difference: 
