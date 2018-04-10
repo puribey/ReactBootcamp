@@ -1,34 +1,77 @@
-React is a library for building user interfaces
+# React Bootcamp
+**by Tyler McGinnis**
 
-Pros: 
-Composition 
-Unidirection Dataflow
-Explicit Mutations 
-Just JS
+## Day one notes 
 
+We use createElement to create new elements and ReactDOM.render to render those inside the DOM.
 
-Compositon: 
+React creates and object representation of the DOM (known as virtual DOM) in order to make it easier to compare and rerender. 
 
-Components: slider, navbar, date, router, map, datepicker, header, calendar, avatar, carousel, chart, icon
+Whats the difference between the react element and the react component?
 
-A react made app is made out of components. 
-2 things to consider:
-- what state is it going to get from it parents 
-- how the ui is going to look like 
+Component = is a fuction or class that optionally accepts imput (props) and returns a react element. We create components that return elements. 
 
-Unidirectional Data Flow:
-In react you hace event handlers like with Jquery but the state (data in your app) of the react application doesn't live in the DOM it lives within the components. React is responsable for rendering. 
+```
 
-this.setState({
-	handle:'saraza',
-	authed: true 
-})
+		function NameComponent (props) {
+			return React.createElement(
+				'h1',
+				null,
+				props.name
+			)
+		}
 
-This sets the new state of the application. 
+		function HandleComponent (props) {
+			return React.createElement(
+				'h3',
+				null,
+				props.handle
+			)
+		} 
 
-Just JS:
-Nothing else needed. 
+		const wrapperElement = React.createElement(
+			'div',
+			{id:'container'},
+			React.createElement(NameComponent, {name: 'Puri'}),
+			React.createElement(HandleComponent, {handle: '@puribey'})
+		)
 
-Go to branch One To see my notes on day one 
+		ReactDOM.render(
+			wrapperElement, 
+			document.getElementById('app')
+		)
 
-createElement =  actual representation of a DOM node
+```
+
+Working with JSX 
+To be able to use JSX we need babel.
+
+Here we see the difference: 
+```
+
+		const name = 'Puri'
+		const handle = '@puribey'
+
+		function NameComponent (props) {
+			return <h1>{props.name}</h1>
+		}
+
+		function HandleComponent (props) {
+			return <h3>{props.handle}</h3>
+		}
+
+		function App () {
+			return (
+				<div id='container'>
+					<NameComponent name={name}/>
+					<HandleComponent handle={handle}/>
+				</div>
+			)
+		}
+
+		ReactDOM.render(
+			<App/>, 
+			document.getElementById('app')
+		)
+
+```
