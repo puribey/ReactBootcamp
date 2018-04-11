@@ -1,47 +1,62 @@
 # React Bootcamp
 **by Tyler McGinnis**
 
----
+## Day Two Notes 
 
-> React is a library for building user interfaces
+State within components 
 
-## Intro notes
-
-### Pros: 
-* Composition 
-* Unidirection Dataflow
-* Explicit Mutations 
-* Just JS
-
-
-_Compositon:_ 
-
-Components: slider, navbar, date, router, map, datepicker, header, calendar, avatar, carousel, chart, icon
-
-Made out of components. 
-
-2 things to consider:
-- what state is it going to get from it parents 
-- how the ui is going to look like 
-
-_Unidirectional Data Flow:_
-In react you hace event handlers like with Jquery but the state (data in your app) of the react application doesn't live in the DOM it lives within the components. React is responsable for rendering. 
-
-
-_Explicit Mutations:_
+Whenever you use .map (loop over any array in js) react need the elements to have its own key. Keys need to be unique. 
 
 ```
-this.setState({
-	handle:'saraza',
-	authed: true 
-})
+function FriendsList(props) {
+	return (
+		<ul>
+			{props.list.map((name) =>(
+				<li key={name}>
+					{name}
+				</li>
+			))}
+		</ul>
+	)
+}
+
+function App () {
+	const friends = ['Agus','Gina','Camila']
+	return(
+		<div>
+			<FriendsList list={friends}/>
+		</div>
+	)
+}
+
+ReactDOM.render(
+	<App/>,
+	document.getElementById('app')
+)
+
 ```
 
-This sets the new state of the application. 
 
-_Just JS:_
-Nothing else needed. 
+If you want react to manage your state we need to use a **class component** instead of a **function component**.
+In order to do that we need to make the imput part of a state inside of the component. For this we need to create a constructor (always include super(props) inside of it) that takes props and adding the state with the info there.
 
-Go to branch **dayOne** to see the rest of my notes...
+Here we made the component App from the gist above from function component to class component: 
 
+```
+class App extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			friends: ['Agus','Gina','Camila']
+		}
+	}
+	render() {
+		return(
+			<div>
+				<FriendsList list={this.state.friends}/>
+			</div>
+		)
+	}
+}	
+```
 
